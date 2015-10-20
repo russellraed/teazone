@@ -1,0 +1,144 @@
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="timezone-js/date.js"></script>
+	<script type="text/javascript">
+
+	</script>
+	<style type="text/css">
+		tr{
+			
+		}
+		td{
+			padding: 5px;
+			border: solid 1px gainsboro;
+		}
+	</style>
+</head>
+<body>
+	<h1>Current Timezone is set to default...</h1>
+	<table cellspacing="0">
+		<thead>
+			<tr>
+				<td>Test</td>
+				<td>Local Value</td>
+				<td>UTC Value (+0000)</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><b>Server Time</b></td>
+				<td id="serverTime" style="font-weight: bold;"></td>
+				<td id="serverTimeUTC" style="font-weight: bold;"></td>
+			</tr>
+			<tr>
+				<td>Default Local Time</td>
+				<td id="localTime"></td>
+				<td id="localTimeUTC"></td>
+			</tr>
+			<tr>
+				<td>America/New_York</td>
+				<td id="americaNY"></td>
+				<td id="americaNYUTC"></td>
+			</tr>
+			<tr>
+				<td>Africa/Nairobi</td>
+				<td id="africaNairobi"></td>
+				<td id="africaNairobiUTC"></td>
+			</tr>
+			<tr>
+				<td>Asia/Seoul</td>
+				<td id="asiaSeoul"></td>
+				<td id="asiaSeoulUTC"></td>
+			</tr>
+		</tbody>
+	</table>
+	<h1>Setting Current Timezone to New York...</h1>
+
+	<table cellspacing="0">
+		<thead>
+			<tr>
+				<td>Test</td>
+				<td>Local Value</td>
+				<td>UTC Value (+0000)</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Default Local Time</td>
+				<td id="localTime2"></td>
+				<td id="localTime2UTC"></td>
+			</tr>
+			<tr>
+				<td>America/New_York</td>
+				<td id="americaNY2"></td>
+				<td id="americaNY2UTC"></td>
+			</tr>
+			<tr>
+				<td>Africa/Nairobi</td>
+				<td id="africaNairobi2"></td>
+				<td id="africaNairobi2UTC"></td>
+			</tr>
+			<tr>
+				<td>Asia/Seoul</td>
+				<td id="asiaSeoul2"></td>
+				<td id="asiaSeoul2UTC"></td>
+			</tr>
+			<tr>
+				<td>Asia/Manila</td>
+				<td id="asiaManila2"></td>
+				<td id="asiaManila2UTC"></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+	<script type="text/javascript" src="timezone.js"></script>
+	<script type="text/javascript">
+		var library = TIMEZONE;
+		library.getServerTime(function(time){
+			$("#serverTime").html(time);
+			$("#serverTimeUTC").html(time.toUTCString());
+		});
+
+		$("#localTime").html(library.getLocalTime());
+		$("#localTimeUTC").html(library.getLocalTime().toUTCString());
+
+		var newYork = library.getTimeFromTZ("America/New_York");
+		$("#americaNY").html(newYork);
+		$("#americaNYUTC").html(newYork.toUTCString());
+
+		var nairobi = library.getTimeFromTZ("Africa/Nairobi");
+		$("#africaNairobi").html(nairobi);
+		$("#africaNairobiUTC").html(nairobi.toUTCString());
+
+		var seoul = library.getTimeFromTZ("Asia/Seoul");
+		$("#asiaSeoul").html(seoul);
+		$("#asiaSeoulUTC").html(seoul.toUTCString());
+
+		//SET CURRENT TIME ZONE TO NEW YORK
+		library.setTimezone("America/New_York");
+		var newLocalTime = library.getLocalTime();
+		$("#localTime2").html(newLocalTime);
+		$("#localTime2UTC").html(newLocalTime.toUTCString());
+
+		var newYork2 = library.getTimeFromTZ("America/New_York");
+		$("#americaNY2").html(newYork2);
+		$("#americaNY2UTC").html(newYork2.toUTCString());
+
+		var nairobi2 = library.getTimeFromTZ("Africa/Nairobi");
+		$("#africaNairobi2").html(nairobi2);
+		$("#africaNairobi2UTC").html(nairobi2.toUTCString());
+
+		var seoul2 = library.getTimeFromTZ("Asia/Seoul");
+		$("#asiaSeoul2").html(seoul2);
+		$("#asiaSeoul2UTC").html(seoul2.toUTCString());
+		
+		var manila2 = library.getTimeFromTZ("Asia/Manila");
+		$("#asiaManila2").html(manila2);
+		$("#asiaManila2UTC").html(manila2.toUTCString());
+	</script>
+
+</html>
